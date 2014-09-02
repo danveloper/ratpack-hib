@@ -1,0 +1,32 @@
+buildscript {
+  repositories {
+    jcenter()
+  }
+  dependencies { classpath 'io.ratpack:ratpack-gradle:0.9.8' }
+}
+
+apply plugin: 'io.ratpack.ratpack-groovy'
+apply plugin: 'idea'
+
+repositories {
+  jcenter()
+  maven { url "http://repo.springsource.org/repo" }
+}
+
+dependencies {
+  springloaded "org.springsource.loaded:springloaded:1.1.5.RELEASE"
+
+  compile ratpack.dependency("jackson")
+  compile ratpack.dependency("rx")
+  compile "org.hibernate:hibernate-core:4.3.6.Final"
+
+  runtime "com.h2database:h2:1.4.181"
+  runtime 'org.apache.logging.log4j:log4j-slf4j-impl:2.0.1'
+  runtime 'org.apache.logging.log4j:log4j-api:2.0.1'
+  runtime 'org.apache.logging.log4j:log4j-core:2.0.1'
+
+
+  testCompile "org.spockframework:spock-core:0.7-groovy-2.0", {
+    exclude module: "groovy-all"
+  }
+}
